@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Raiffeisen WirStrom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Light/Regular/Medium classes use Regular Font */
+      @font-face {
+        font-family: 'Amalia';
+        src: url('https://brand.rbinternational.com/etc.clientlibs/rbi/clientlibs/clientlib-site/resources/fonts/AmaliaW05-Regular.C_BgSpFZ.woff2') format('woff2');
+        font-weight: 300;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Amalia';
+        src: url('https://brand.rbinternational.com/etc.clientlibs/rbi/clientlibs/clientlib-site/resources/fonts/AmaliaW05-Regular.C_BgSpFZ.woff2') format('woff2');
+        font-weight: 400;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Amalia';
+        src: url('https://brand.rbinternational.com/etc.clientlibs/rbi/clientlibs/clientlib-site/resources/fonts/AmaliaW05-Regular.C_BgSpFZ.woff2') format('woff2');
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      /* Bold classes use Medium Font */
+      @font-face {
+        font-family: 'Amalia';
+        src: url('https://brand.rbinternational.com/etc.clientlibs/rbi/clientlibs/clientlib-site/resources/fonts/AmaliaW05-Medium.g7pZLoJ-.woff2') format('woff2');
+        font-weight: 600;
+        font-style: normal;
+      }
+      @font-face {
+        font-family: 'Amalia';
+        src: url('https://brand.rbinternational.com/etc.clientlibs/rbi/clientlibs/clientlib-site/resources/fonts/AmaliaW05-Medium.g7pZLoJ-.woff2') format('woff2');
+        font-weight: 700;
+        font-style: normal;
+      }
+      
+      @font-face {
+        font-family: 'GDSIcons';
+        src: url('https://brand.rbinternational.com/etc.clientlibs/rbi/clientlibs/clientlib-site/resources/fonts/gds-icons.B_ohZ0l4.ttf?1.0.0-beta0') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      /* Override Chrome/Safari autofill background color to match standard inputs */
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover, 
+      input:-webkit-autofill:focus, 
+      input:-webkit-autofill:active{
+          -webkit-box-shadow: 0 0 0 30px white inset !important;
+          -webkit-text-fill-color: #2b2d33 !important;
+          transition: background-color 5000s ease-in-out 0s;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'raiffeisen-green': '#66b84d',
+              'raiffeisen-yellow': '#fee600',
+              'dark-green': '#385724',
+              'light-green-bg': '#f3f8e9',
+              'badge-green': '#409119',
+              'hero-green': '#78be21',
+            },
+            fontFamily: {
+              sans: ['Amalia', 'Arial', 'Open Sans', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "jspdf": "https://esm.sh/jspdf"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-white">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
