@@ -5,25 +5,26 @@ export const footnote1Text = "Sofern nicht anders vereinbart, erfolgt die Vertra
 
 export const footnote2Text = (
     <span>
-        Alle Preisangaben sind Nettopreise und zzgl. 20% Umsatzsteuer sowie zuzüglich exklusive Umlagen und Abgaben. Sämtliche Systemnutzungsentgelte (Netztarife), Zuschläge und Abgaben sind Teil der Netzrechnung des Netzbetreibers. Eine Gebrauchsabgabe Energie ist nicht im Arbeits- oder Grundpreis enthalten und kann zusätzlich erhoben werden. Die monatlichen Teilbeträge errechnen sich aus dem Arbeits- und Grundpreis Deines Tarifs. Weitere Informationen zu Teilbeträgen und Zahlungsmodalitäten findest Du unter Ziff. 9 und 10 unserer <a href="https://www.maxenergy.at/Download/AGB_Strom.pdf" target="_blank" rel="noopener noreferrer" className="underline text-white hover:text-gray-200">AGB Strom</a>.
+        Alle Preisangaben sind Nettopreise und zzgl. 20% Umsatzsteuer sowie zuzüglich exklusive Umlagen und Abgaben. Sämtliche Systemnutzungsentgelte (Netztarife), Zuschläge und Abgaben sind Teil der Netzrechnung des Netzbetreibers. Eine Gebrauchsabgabe Energie ist nicht im Arbeits- oder Grundpreis enthalten und kann zusätzlich erhoben werden. Die monatlichen Teilbeträge errechnen sich aus dem Arbeits- und Grundpreis Deines Tarifs. Weitere Informationen zu Teilbeträgen und Zahlungsmodalitäten findest Du unter Ziff. 9 und 10 unserer <a href="https://www.maxenergy.at/Download/AGB_Strom.pdf" target="_blank" rel="noopener noreferrer" className="underline hover:text-raiffeisen-green">AGB Strom</a>.
     </span>
 );
 
 export const footnote3Text = (
-    <span>
-        <strong>Nach Ersparnis:</strong> Die genannten Arbeitspreise von „ab 7,42 ct/kWh“ sind rechnerische Werte und beziehen sich auf die Verbrauchstarife unter Berücksichtigung möglicher gesetzlicher Vergünstigungen aus der Teilnahme an einer Energiegemeinschaft (insb. Reduktion bestimmter Netzentgelte, kein Erneuerbaren-Förderbeitrag und – soweit gesetzlich vorgesehen – keine Elektrizitätsabgabe).
-        <br/><br/>
-        <strong>Ihr effektiver Stromarbeitspreis setzt sich aus bis zu drei Komponenten zusammen:</strong>
+    <span className="font-normal">
+        Der hier dargestellte durchschnittliche Strompreis setzt sich aus bis zu drei Komponenten zusammen:
         <ul className="list-disc pl-3 mt-1 space-y-1">
-            <li>EEG-Preis für Strommengen aus einer regionalen Energiegemeinschaft (nur wenn Teilnahme am Standort möglich und in entsprechender Menge verfügbar)</li>
+            <li>EEG-Preis für Strommengen aus einer regionalen Energiegemeinschaft (nur wenn Teilnahme am Standort möglich und in entsprechender Menge verfügbar),</li>
             <li>BEG-Preis für Strommengen aus der Bürgerenergiegemeinschaft,</li>
             <li>Preis des Ökostromtarifs für alle Strommengen, die nicht über Energiegemeinschaften gedeckt werden.</li>
         </ul>
         <br/>
-        <strong>Abweichungen möglich:</strong> Der tatsächlich verrechnete Endpreis hängt u. a. von Standort/Netzgebiet, Verbrauchsprofil, verfügbarer EEG/BEG-Menge sowie den jeweils geltenden Abgaben und Netzentgelten ab.
+        Abweichungen sind möglich: Der tatsächlich verrechnete Endpreis hängt u. a. von Standort/Netzgebiet, Verbrauchsprofil, verfügbarer EEG/BEG-Menge sowie den jeweils geltenden Abgaben und Netzentgelten ab.
         <br/><br/>
-        Hinweis 2026/2027: 2026 ist die Elektrizitätsabgabe gesetzlich befristet reduziert (unabhängig von EEG).
-        <br/>
-        Preisangaben exkl. USt.; verbindlich sind Vertrag und gesetzliche Bestimmungen. Stand 02/2026.
+        Hinweis 2026/2027: 2026 ist die Elektrizitätsabgabe gesetzlich befristet reduziert. Die dargestellte Einsparwirkung im „Ab“-Preis ist daher konzeptionell auf die Rahmenbedingungen ab 2027 ausgerichtet; 2026 kann der Effekt geringer ausfallen.<br/>
+        Die Vergünstigungen werden direkt auf der Netzabrechnung ausgewiesen.
+        <br/><br/>
+        Zusätzliche Einspareffekte aus einem allfälligen Sommer-Nieder-Arbeitspreis (SNAP) in den jeweiligen Netzkosten wurden in der Vergleichsrechnung nicht berücksichtigt und können die tatsächliche Ersparnis im Einzelfall zusätzlich erhöhen. 
+        <br/><br/>
+        Preisangaben exkl. USt. - Stand 03/2026.
     </span>
 );

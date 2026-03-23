@@ -2,7 +2,7 @@
 import React from 'react';
 import { Superscript, PriceRow } from '../PricingComponents';
 import { PricingCalculations } from '../PricingTypes';
-import { footnote2Text, footnote3Text } from '../PricingConstants';
+import { footnote2Text } from '../PricingConstants';
 
 export const PricingConsumptionTable: React.FC<{ calc: PricingCalculations }> = ({ calc }) => {
     return (
@@ -27,16 +27,16 @@ export const PricingConsumptionTable: React.FC<{ calc: PricingCalculations }> = 
                     <PriceRow 
                         label={
                             calc.communities.isLocalized ? (
-                                <div className="flex flex-col text-left">
+                                <div className="flex flex-col text-left mr-2">
                                     <span className="font-bold text-raiffeisen-green text-[10px] uppercase tracking-wider mb-0.5">Ihre Gemeinschaft</span>
-                                    <span className="leading-tight text-[#2b2d33] max-w-[150px]">{calc.communities.eeg}</span>
+                                    <span className="leading-tight text-[#2b2d33]">{calc.communities.eeg}</span>
                                 </div>
                             ) : "Energiegemeinschaft"
                         }
                         value={
                             <div className="flex items-center gap-2 justify-end">
                                 <span className="whitespace-nowrap">
-                                   {calc.eegPrefix}{calc.priceEEG.toFixed(2).replace('.', ',')} ct/kWh<Superscript num="3" content={footnote3Text} align="left" />
+                                   {calc.eegPrefix}{calc.priceEEG.toFixed(2).replace('.', ',')} ct/kWh
                                 </span>
                             </div>
                         } 
@@ -44,16 +44,9 @@ export const PricingConsumptionTable: React.FC<{ calc: PricingCalculations }> = 
                         infoText={
                             <span>
                                 Wo verfügbar.<br/>
-                                Für Strom aus Ihrer EEG zahlen Sie zunächst 12,00 ct/kWh<br/>
-                                (vor Abzug gesetzlicher Vergünstigungen)<br/><br/>
-                                Sie profitieren dabei von:
-                                <ul className="list-disc pl-3 mt-1 space-y-0.5">
-                                    <li>28 % Rabatt auf Netzentgelte</li>
-                                    <li>Kein Erneuerbaren-Förderbeitrag</li>
-                                    <li>Keine Elektrizitätsabgabe</li>
-                                </ul>
-                                Die Vergünstigungen werden direkt auf der Netzabrechnung ausgewiesen – der effektive Strompreis reduziert sich dadurch automatisch.<br/>
-                                Preis exkl. USt.
+                                Der genannte "ab Preis" ist ein rechnerischer Wert für Mitglieder einer Erneuerbaren-Energie-Gemeinschaft (EEG). Er setzt sich zusammen aus dem Energiepreis der EEG abzüglich der gesetzlichen Begünstigungen für lokalen Strombezug: Entfall des Erneuerbaren-Förderbeitrags, Entfall der Elektrizitätsabgabe sowie 28 % Reduktion der Arbeitspreis-Komponente der Netznutzungsentgelte.<br/><br/>
+                                Die dargestellte Einsparwirkung im „Ab“-Preis ist daher konzeptionell auf die Rahmenbedingungen ab 2027 ausgerichtet; 2026 kann der Effekt geringer ausfallen.<br/>
+                                Die Vergünstigungen werden direkt auf der Netzabrechnung ausgewiesen. Preisangaben exkl. USt.
                             </span>
                         } 
                     />
@@ -61,8 +54,8 @@ export const PricingConsumptionTable: React.FC<{ calc: PricingCalculations }> = 
                 <PriceRow 
                     label={
                         calc.communities.isLocalized ? (
-                            <div className="flex flex-col text-left">
-                                 <span className="leading-tight text-gray-700 max-w-[150px]">{calc.communities.beg}</span>
+                            <div className="flex flex-col text-left mr-2">
+                                 <span className="leading-tight text-gray-700">{calc.communities.beg}</span>
                             </div>
                         ) : "Bürgerenergiegemeinschaft"
                     }
@@ -89,7 +82,7 @@ export const PricingConsumptionTable: React.FC<{ calc: PricingCalculations }> = 
                     hasInfo
                     infoText={
                         <span>
-                            Für Strom aus Ihrer BEG zahlen Sie {calc.priceBEG.toFixed(2).replace('.', ',')} ct/kWh. Preis exkl. USt.
+                            Preis für den Strom aus Ihrer BEG. Preis exkl. USt.
                         </span>
                     }
                 />
@@ -123,8 +116,7 @@ export const PricingConsumptionTable: React.FC<{ calc: PricingCalculations }> = 
                     hasInfo
                     infoText={
                         <span>
-                            Für den restlichen Strom zahlen Sie {calc.finalPriceStr} ct/kWh. Dieser Strompreis ist Ihnen für 12 Monate garantiert.<br/>
-                            Preis exkl. USt.
+                            Preis für den restlichen Strom, den Sie nicht aus den Energiegemeinschaften erhalten. Preisgarantie laut Tarifblatt. Preis exkl. USt. 
                         </span>
                     }
                 />
@@ -151,7 +143,7 @@ export const PricingConsumptionTable: React.FC<{ calc: PricingCalculations }> = 
                         </div>
                     } 
                     hasInfo 
-                    infoText="Der Grundpreis ist ein fester monatlicher Betrag, der unabhängig von Ihrem Stromverbrauch anfällt. Er deckt die Fixkosten, die im Rahmen eines Stromliefervertrages anfallen. Dazu gehört zum Beispiel die Abrechnung und Rechnungsstellung sowie Kundenservice. Preis excl. USt."
+                    infoText="Der Grundpreis ist ein fester monatlicher Betrag, der unabhängig von Ihrem Stromverbrauch anfällt. Er deckt die Fixkosten, die im Rahmen eines Stromliefervertrages anfallen. Dazu gehört zum Beispiel die Abrechnung und Rechnungsstellung sowie Kundenservice. Preis exkl. USt."
                 />
             </div>
         </>

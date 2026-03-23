@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { RegistrationFormData, MeterPoint } from './RegistrationTypes';
 import { EMPTY_STATE, zipCityMapping } from './RegistrationConfig';
-import { formatChunked, isValidIban } from './RegistrationUtils';
+import { formatChunked, isValidIban, isValidMeterPrefix } from './RegistrationUtils';
 
 export const useRegistration = (
     setIsProducer: (val: string) => void,
@@ -145,6 +145,7 @@ export const useRegistration = (
                     if (cleanNewValue.length > 0) {
                         const allOtherPoints = [...formData.consumptionMeterPoints, ...formData.einspeiseMeterPoints].filter(p => p.id !== point.id);
                         if (allOtherPoints.some(p => p.meterNumber.replace(/\s+/g, '').toUpperCase() === cleanNewValue)) e.target.setCustomValidity("Diese Zählpunktnummer wurde bereits verwendet.");
+                        else if (cleanNewValue.length >= 6 && !isValidMeterPrefix(cleanNewValue)) e.target.setCustomValidity("Die Zählpunktnummer muss mit einem gültigen Kürzel (z.B. AT001000) beginnen.");
                         else e.target.setCustomValidity("");
                     } else e.target.setCustomValidity("");
                     updatedPoint.meterNumber = formatted;
@@ -186,11 +187,13 @@ export const useRegistration = (
         if (!formData.meterNumberLater) {
             for (const p of formData.consumptionMeterPoints) {
                 if (p.meterNumber.replace(/\s+/g, '').length !== 31) { alert("Bitte überprüfen Sie die Zählpunktnummern. Sie müssen genau 31 Ziffern lang sein (ohne AT)."); return; }
+                if (!isValidMeterPrefix(p.meterNumber)) { alert("Bitte überprüfen Sie die Zählpunktnummern. Sie müssen mit einem gültigen Kürzel (z.B. AT001000) beginnen."); return; }
             }
         }
         if (formData.isProducer === 'yes' && !formData.einspeiseMeterNumberLater) {
              for (const p of formData.einspeiseMeterPoints) {
                 if (p.meterNumber.replace(/\s+/g, '').length !== 31) { alert("Bitte überprüfen Sie die Einspeise-Zählpunktnummern. Sie müssen genau 31 Ziffern lang sein (ohne AT)."); return; }
+                if (!isValidMeterPrefix(p.meterNumber)) { alert("Bitte überprüfen Sie die Einspeise-Zählpunktnummern. Sie müssen mit einem gültigen Kürzel (z.B. AT001000) beginnen."); return; }
             }
         }
         if (!formRef.current?.checkValidity()) { formRef.current?.reportValidity(); return; }

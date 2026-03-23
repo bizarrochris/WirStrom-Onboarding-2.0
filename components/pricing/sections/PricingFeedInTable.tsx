@@ -9,9 +9,9 @@ export const PricingFeedInTable: React.FC<{ calc: PricingCalculations }> = ({ ca
             <h4 className="font-bold text-[#2b2d33] text-lg mb-4 border-b-2 border-raiffeisen-yellow inline-block pb-1">Einspeisevergütung</h4>
             <div className="space-y-1 text-sm">
                 {calc.showEEG && (
-                    <PriceRow label="Energiegemeinschaft" value={`${calc.feedInEEG.toFixed(2).replace('.', ',')} ct/kWh`} hasInfo infoText="Vergütung für Strom, der direkt von Nachbarn in der regionalen Energiegemeinschaft genutzt wird." />
+                    <PriceRow label={calc.communities.isLocalized ? calc.communities.eeg : "Energiegemeinschaft"} value={`${calc.feedInEEG.toFixed(2).replace('.', ',')} ct/kWh`} hasInfo infoText="Vergütung für Strom, der direkt von Nachbarn in der regionalen Energiegemeinschaft genutzt wird." />
                 )}
-                <PriceRow label="Bürgerenergiegemeinschaft" value={`${calc.feedInBEG.toFixed(2).replace('.', ',')} ct/kWh`} hasInfo infoText="Vergütung für Strom, der von den Mitgliedern der Bürgerenergiegemeinschaft genutzt wird." />
+                <PriceRow label={calc.communities.isLocalized ? calc.communities.beg : "Bürgerenergiegemeinschaft"} value={`${calc.feedInBEG.toFixed(2).replace('.', ',')} ct/kWh`} hasInfo infoText="Vergütung für Strom, der von den Mitgliedern der Bürgerenergiegemeinschaft genutzt wird." />
                 <PriceRow 
                     label="Raiffeisen Ökostrom" 
                     value={

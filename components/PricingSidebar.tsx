@@ -61,8 +61,6 @@ export const PricingSidebar: React.FC<Props> = (props) => {
                 )}
 
                 <p className="text-[11px] text-gray-500 mt-6 text-left leading-relaxed">
-                    Angebot gültig bei Vertragsabschluss bis 31.03.2026. Der tatsächliche Wechselzeitpunkt kann bis 12 Monate in der Zukunft liegen.
-                    <br />
                     Zur besseren Vergleichbarkeit und Darstellung sind alle Preise netto angegeben. Die Abrechnung erfolgt zzgl. 20% USt. 
                     <br />
                     Information: Die Netzkosten und somit auch die Ersparnis werden im ersten Schritt direkt von ihrem Netzbetreiber abgerechnet. 
@@ -77,4 +75,4 @@ export const PricingSidebar: React.FC<Props> = (props) => {
             </div>
         </div>
     );
-}
+};

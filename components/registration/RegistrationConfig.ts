@@ -5,6 +5,11 @@ import { RegistrationFormData } from './RegistrationTypes';
 export const SHOW_DEV_TOOLS = true;
 export const METER_PATTERN = "([a-zA-Z0-9]{4}\\s){7}[a-zA-Z0-9]{3}";
 
+export const VALID_METER_PREFIXES = [
+    "AT001000", "AT002000", "AT002110", "AT002112", "AT002120", "AT002130", "AT002210", "AT002220", "AT002230", "AT002250", "AT002270", "AT002280", "AT002290", "AT002300", "AT002400", "AT002900", "AT002910", "AT003000", "AT003100", "AT003200", "AT003300", "AT003310", "AT003460", "AT003470", "AT003510", "AT003520", "AT003540", "AT003570", "AT003580", "AT003590", "AT003900", "AT003910", "AT003920", "AT004000", "AT004110", "AT004120", "AT004130", "AT005000", "AT005100", "AT005110", "AT005120", "AT005130", "AT005140", "AT005150", "AT005160", "AT005210", "AT005320", "AT005330", "AT005340", "AT005350", "AT005370", "AT005440", "AT005460", "AT005470", "AT005480", "AT005490", "AT005500", "AT005540", "AT005550", "AT005600", "AT005610", "AT005630", "AT005650", "AT005690", "AT006000", "AT006110", "AT006210", "AT006220", "AT006230", "AT006240", "AT006250", "AT007000", "AT007100", "AT007240", "AT007241", "AT008000", "AT008100", "AT008110", "AT008120", "AT008130", "AT008140", "AT008150", "AT008160", "AT008162", "AT008170", "AT008180", "AT008190", "AT008210", "AT008310", "AT008330", "AT008350", "AT008360", "AT008370", "AT008390", "AT008410", "AT008420", "AT008430",
+    "AT008440", "AT008450", "AT008460", "AT008470", "AT008490", "AT008510", "AT008540", "AT008550", "AT008560", "AT008570", "AT008580", "AT008620", "AT008630", "AT008690", "AT008720", "AT008740", "AT008850", "AT008870", "AT008910", "AT008920", "AT008930", "AT008950", "AT008980", "AT008990", "AT009000", "AT009990"
+];
+
 export const NOE_ZIP_CODES = [
   "2134", "2132", "2130", "2151", "2192", "2326", "2151", "2451", "2116", "2731", "2115", "2126", 
   "2115", "2116", "2114", "2126", "2191", "2222", "2125", "2124", "2114", "2111", "2113", "2081", 
@@ -20,29 +25,44 @@ export const NOE_ZIP_CODES = [
   "3143", "3072", "3074"
 ];
 
+export const BGLD_SPECIAL_ZIP_CODES = [
+ "8380", "8382", "8384", "8385", "2421", "2422", "2424", "2425", "2475"
+];
+
+export const ST_POELTEN_ZIP_CODES = [
+    "3121", "3110", "3100", "3385", "3386", "3200", "3151", "3123", "3107", "3105", "3140", "3071", "3142", "3143", "3072", "3074"
+];
+
 export const isNoeZip = (zip: string) => NOE_ZIP_CODES.includes(zip);
 
+export const isBGLDSpecialZip = (zip: string) => BGLD_SPECIAL_ZIP_CODES.includes(zip);
+
+export const isStPoeltenZip = (zip: string) => ST_POELTEN_ZIP_CODES.includes(zip);
+
 // Helper to check if EEG should be hidden based on ZIP code
-// Excludes everything NOT in Burgenland (7xxx) or the NOE list
+// Excludes everything NOT in Burgenland (7xxx or part of BGLD_SPECIAL list) or the NOE list
 export const isEegExcluded = (zip: string): boolean => {
     if (!zip) return false; // Default state (show generic)
-    if (zip.startsWith('7')) return false;
+    if (zip.startsWith('7') || isBGLDSpecialZip(zip)) return false;
     if (isNoeZip(zip)) return false;
     return true;
 };
 
 // Helper to determine EEG price and prefix based on ZIP code
 export const getEegPriceConfig = (zip: string): { price: number, prefix: string } => {
-    if (!zip) return { price: 7.42, prefix: 'ab ' };
+    if (!zip) return { price: 6.50, prefix: 'ab ' };
     
-    if (zip.startsWith('7')) {
-        return { price: 7.51, prefix: '' };
+    if (isStPoeltenZip(zip)) {
+        return { price: 7.82, prefix: '' };
+    }
+    if (zip.startsWith('7') || isBGLDSpecialZip(zip)) {
+        return { price: 6.50, prefix: '' };
     }
     if (isNoeZip(zip)) {
         return { price: 7.42, prefix: '' };
     }
     
-    return { price: 7.42, prefix: 'ab ' };
+    return { price: 6.5, prefix: 'ab ' };
 };
 
 export const CONSENT_TEXTS = {

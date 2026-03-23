@@ -77,7 +77,7 @@ export const InfoIcon: React.FC<{ content: React.ReactNode; variant?: 'default' 
     );
 };
 
-export const Superscript: React.FC<{ num: string, content: React.ReactNode, align?: 'center' | 'left' }> = ({ num, content, align = 'center' }) => {
+export const Superscript: React.FC<{ num: string, content: React.ReactNode, align?: 'center' | 'left', colorClass?: string }> = ({ num, content, align = 'center', colorClass = 'text-gray-500 hover:text-raiffeisen-green' }) => {
     const [isOpen, setIsOpen] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -109,13 +109,13 @@ export const Superscript: React.FC<{ num: string, content: React.ReactNode, alig
             onMouseLeave={handleLeave}
         >
             <span 
-                className="cursor-pointer text-[10px] font-bold text-gray-500 hover:text-raiffeisen-green"
+                className={`cursor-pointer text-[10px] font-bold ${colorClass}`}
             >
                 {num}
             </span>
             {isOpen && (
                 <div 
-                    className={`absolute bottom-full mb-1 w-72 md:w-96 max-w-[90vw] p-3 bg-gray-800 text-white text-[11px] rounded shadow-xl z-50 leading-tight font-normal text-left whitespace-normal break-words right-0 ${desktopPositionClass}`}
+                    className={`absolute bottom-full mb-1 w-72 md:w-96 max-w-[90vw] p-3 bg-gray-800 text-white text-xs rounded shadow-xl z-50 leading-tight font-normal text-left whitespace-normal break-words right-0 normal-case tracking-normal ${desktopPositionClass}`}
                     onMouseEnter={handleEnter}
                     onMouseLeave={handleLeave}
                 >
@@ -139,8 +139,11 @@ export const Benefit: React.FC<{ icon: React.ReactNode; label: React.ReactNode; 
 
 export const PriceRow: React.FC<{ label: React.ReactNode; value: React.ReactNode; hasInfo?: boolean; infoText?: string | React.ReactNode; highlight?: boolean }> = ({ label, value, hasInfo = false, infoText, highlight = false }) => (
     <div className={`flex justify-between items-center py-3 border-b border-gray-100 text-sm last:border-0 ${highlight ? 'bg-yellow-50 -mx-5 px-5' : ''}`}>
-        <span className="text-gray-700 flex items-center">{label}{hasInfo && <InfoIcon content={infoText} />}</span>
-        <div className="font-bold text-[#2b2d33] text-right">
+        <div className="text-gray-700 flex items-center gap-1 flex-1 min-w-0 pr-2">
+            <div className="break-words min-w-0">{label}</div>
+            {hasInfo && <InfoIcon content={infoText} className="shrink-0" />}
+        </div>
+        <div className="font-bold text-[#2b2d33] text-right shrink-0 ml-2">
             {value}
         </div>
     </div>

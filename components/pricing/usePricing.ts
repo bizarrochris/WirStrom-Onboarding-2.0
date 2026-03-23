@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PricingProps, PricingCalculations } from './PricingTypes';
-import { isEegExcluded, getEegPriceConfig, isNoeZip } from '../registration/RegistrationConfig';
+import { isEegExcluded, getEegPriceConfig, isNoeZip, isStPoeltenZip } from '../registration/RegistrationConfig';
 
 export const usePricing = ({ isProducer, storageOption, zipCode }: PricingProps): PricingCalculations => {
     const [promoInput, setPromoInput] = useState('');
@@ -38,6 +38,13 @@ export const usePricing = ({ isProducer, storageOption, zipCode }: PricingProps)
     };
 
     const getCommunityNames = (zip: string) => {
+        if (isStPoeltenZip(zip)) {
+            return {
+                eeg: "Energiegemeinschaft in St. Pölten",
+                beg: "Bürgerenergiegemeinschaft Impuls 2.0",
+                isLocalized: true
+            };
+        }
         if (zip.startsWith('7')) {
              return {
                  eeg: "Energiegemeinschaft im Burgenland",
@@ -69,14 +76,14 @@ export const usePricing = ({ isProducer, storageOption, zipCode }: PricingProps)
     const { price: priceEEG, prefix: eegPrefix } = getEegPriceConfig(zipCode);
 
     // --- BEG Price Logic ---
-    const standardBEG = 9.95;
+    const standardBEG = isStPoeltenZip(zipCode) ? 9.90 : 9.99;
     const promoBEG = 8.99;
     const priceBEG = isPromoActive ? promoBEG : standardBEG;
 
     // --- Ökostrom Price Logic ---
-    const standardBasePrice = 11.00; 
-    const promoBasePrice = 10.49;
-    const listPriceStr = '12,90';
+    const standardBasePrice = 11.99; 
+    const promoBasePrice = 10.99;
+    const listPriceStr = '14,99';
 
     // Start with either the promo price or the standard price
     let currentBasePrice = isPromoActive ? promoBasePrice : standardBasePrice;
@@ -96,11 +103,11 @@ export const usePricing = ({ isProducer, storageOption, zipCode }: PricingProps)
     if (isStorageDiscountActive) {
         // If storage bonus is active, we strike through the price "before storage discount"
         // This is either the promo price or the standard price
-        strikeThroughPrice = isPromoActive ? '10,49' : '11,00';
+        strikeThroughPrice = isPromoActive ? '10,99' : '11,99';
         badgeText = 'Speicherbonus';
     } else if (isPromoActive) {
         // If only promo is active, we strike through the standard price (11.00)
-        strikeThroughPrice = '11,00';
+        strikeThroughPrice = '11,99';
         badgeText = 'Mitarbeiterbonus';
     } else {
         // Standard case: 11.00 is a deal compared to list price 12.90
@@ -126,7 +133,7 @@ export const usePricing = ({ isProducer, storageOption, zipCode }: PricingProps)
     const currentAvg = avgPriceVal.toFixed(2).replace('.', ',');
 
     // Feed-in Weighted Average
-    const feedInEEG = 9.00;
+    const feedInEEG = isStPoeltenZip(zipCode) ? 8.00 : 9.00;
     const feedInBEG = 8.00;
     const feedInOeko = isPromoActive ? 7.00 : 4.00;
     

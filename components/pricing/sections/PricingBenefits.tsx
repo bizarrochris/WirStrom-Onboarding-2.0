@@ -17,7 +17,7 @@ export const PricingBenefits: React.FC<PricingBenefitsProps> = ({ isPromoActive 
                 label="Ökostrom Tarif" 
                 value={isPromoActive ? "mit Jahresfixpreis für 2026" : "mit 12 Monaten Preisgarantie"}
             />
-            <Benefit icon={<SparklesIcon className="w-6 h-6" />} label="Genossenschaftsbeitrag" value="Einmalig nur 10,00 €" />
+            <Benefit icon={<SparklesIcon className="w-6 h-6" />} label="Genossenschaftsbeitrag" value="nur 10,00 € pro Genossenschaft (wird bei Austritt zu 100% erstattet)" />
         </div>
     );
 };
